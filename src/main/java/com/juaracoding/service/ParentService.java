@@ -7,10 +7,9 @@ import com.juaracoding.model.User;
 import com.juaracoding.repo.ContohRepo;
 import com.juaracoding.repo.ParentRepo;
 import com.juaracoding.repo.UserRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 @Service
 public class ParentService {
@@ -29,6 +28,7 @@ public class ParentService {
     public String save(ParentEntity parentEntity,Contoh contoh,User user){
         try{
             parentRepo.save(parentEntity);
+            int intX = 1/0;
             contohRepo.save(contoh);
             userRepo.save(user);
             userRepo.findAll();

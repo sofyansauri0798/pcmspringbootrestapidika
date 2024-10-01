@@ -1,42 +1,66 @@
 package com.juaracoding.security;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import java.security.NoSuchAlgorithmException;
-import java.security.Security;
+import org.mindrot.jbcrypt.BCrypt;
 
-public class AESGeneratedKey {
+import java.util.function.Function;
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        // Tambahkan Bouncy Castle Provider
-        Security.addProvider(new BouncyCastleProvider());
-        try {
-            // Inisialisasi generator kunci AES dengan Bouncy Castle
-            KeyGenerator keyGen = KeyGenerator.getInstance("AES", "BC");
+class BcryptCustom {
+    private final int logRounds;
 
-            // Atur panjang kunci (misalnya: 128, 192, atau 256 bit)
-            keyGen.init(256);
-
-            // Generate kunci AES
-            SecretKey aesKey = keyGen.generateKey();
-            System.out.println(aesKey);
-            // Tampilkan kunci AES
-            System.out.println("AES Key: " + bytesToHex(aesKey.getEncoded()));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public BcryptCustom(int logRounds) {
+        this.logRounds = logRounds;
     }
 
-    // Helper method untuk mengubah byte array menjadi string heksadesimal
-    public static String bytesToHex(byte[] bytes) {
-        StringBuilder result = new StringBuilder();
-        for (byte b : bytes) {
-            result.append(String.format("%02x", b));
+    public String hash(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt(logRounds));
+    }
+
+    public boolean verifyHash(String password, String hash) {
+        return BCrypt.checkpw(password, hash);
+    }
+
+    public boolean verifyAndUpdateHash(String password, String hash, Function<String, Boolean> updateFunc) {
+        if (BCrypt.checkpw(password, hash)) {
+            int intRounds = getRounds(hash);
+            if(intRounds ==0)
+            {
+                return false;
+            }
+            if (intRounds != logRounds) {
+                String newHash = hash(password);
+                return updateFunc.apply(newHash);
+            }
+            return true;
         }
-        return result.toString();
+        return false;
+    }
+
+    private int getRounds(String salt) {
+        char minor = (char)0;
+        int off = 0;
+
+        if (salt.charAt(0) != '$' || salt.charAt(1) != '2')
+        {
+            return 0;
+        }
+        if (salt.charAt(2) == '$')
+        {
+            off = 3;
+        }
+        else
+        {
+            minor = salt.charAt(2);
+            if (minor != 'a' || salt.charAt(3) != '$')
+            {
+                return 0;
+            }
+            off = 4;
+        }
+        if (salt.charAt(off + 2) > '$')
+        {
+            return 0;
+        }
+        return Integer.parseInt(salt.substring(off, off + 2));
     }
 }

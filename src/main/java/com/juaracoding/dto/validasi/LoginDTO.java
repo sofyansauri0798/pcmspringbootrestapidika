@@ -1,13 +1,14 @@
-package com.juaracoding.dto;
+package com.juaracoding.dto.validasi;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 public class LoginDTO {
 
     @NotNull(message = "NULL!!!")
     @NotBlank(message = "BLANK!!!")
     @NotEmpty(message = "EMPTY!!!")
-    @Pattern(regexp = "^[\\w]{8,16}$",message = "Username dan password salah")
     private String username;
 
     @NotNull

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 
 @RestController
@@ -16,6 +15,7 @@ public class CobaController {
     @PostMapping("/kirim-file")
     public String uploadFile(@RequestParam(value = "kiriman") MultipartFile file){
 
+//        LoggingFile.print(OtherConfig.getFlagLogging(),"apa kek disini");
         String strFileName = file.getOriginalFilename();
         try {
             FileUtility.saveFile("user-files",strFileName,file);
@@ -23,6 +23,5 @@ public class CobaController {
             throw new RuntimeException(e);
         }
         return strFileName;
-
     }
 }

@@ -9,7 +9,7 @@ import org.bouncycastle.util.encoders.Hex;
 
 public class Crypto {
 
-//    private static final String defaultKey = "12fc5e5b5abe431b94870823a154e511d2e3419f47c455a9659d89268776a3eb";
+    //    private static final String defaultKey = "12fc5e5b5abe431b94870823a154e511d2e3419f47c455a9659d89268776a3eb";
 //    private static final String defaultKey = "7bf29d8a22a03f43baf953f5c5e4cb264dbf2db3651da21d28daee478a189cce";
     private static final String defaultKey = "2d38e01c52c0d9c475dac174eff7cea6464778ec35f3d78eba5c1421d684a3e6";
     public static String performEncrypt(String keyText, String plainText) {
@@ -52,7 +52,7 @@ public class Crypto {
 
     public static void main(String[] args) {
 
-        String strToEncrypt = "sofyan";//put text to encrypt in here
+        String strToEncrypt = "paul";//put text to encrypt in here
         String encryptionResult = new Crypto().performEncrypt(strToEncrypt);
         System.out.println("Encryption Result : "+encryptionResult);
 

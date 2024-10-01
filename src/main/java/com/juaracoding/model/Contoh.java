@@ -1,15 +1,7 @@
 package com.juaracoding.model;
-/*
-IntelliJ IDEA 2022.3.1 (Community Edition)
-Build #IC-223.8214.52, built on August 19, 2024
-@Author Sofyan Sauri a.k.a. Sofyan Sauri
-Java Developer
-Created on 27/09/2024 17:58
-@Last Modified 27/09/2024 17:58
-Version 1.0
-*/
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -33,4 +25,76 @@ public class Contoh {
     private Boolean contohBoolean;
     private Character contohChar;
     private LocalDate createdAt;
+
+    public Short getId() {
+        return id;
+    }
+
+    public void setId(Short id) {
+        this.id = id;
+    }
+
+    public String getNamaContoh() {
+        return namaContoh;
+    }
+
+    public void setNamaContoh(String namaContoh) {
+        this.namaContoh = namaContoh;
+    }
+
+    public String getDeskripsiContoh() {
+        return deskripsiContoh;
+    }
+
+    public void setDeskripsiContoh(String deskripsiContoh) {
+        this.deskripsiContoh = deskripsiContoh;
+    }
+
+    public Double getContohDouble() {
+        return contohDouble;
+    }
+
+    public void setContohDouble(Double contohDouble) {
+        this.contohDouble = contohDouble;
+    }
+
+    public Byte getContohByte() {
+        return contohByte;
+    }
+
+    public void setContohByte(Byte contohByte) {
+        this.contohByte = contohByte;
+    }
+
+    public Short getContohShort() {
+        return contohShort;
+    }
+
+    public void setContohShort(Short contohShort) {
+        this.contohShort = contohShort;
+    }
+
+    public Boolean getContohBoolean() {
+        return contohBoolean;
+    }
+
+    public void setContohBoolean(Boolean contohBoolean) {
+        this.contohBoolean = contohBoolean;
+    }
+
+    public Character getContohChar() {
+        return contohChar;
+    }
+
+    public void setContohChar(Character contohChar) {
+        this.contohChar = contohChar;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
 }

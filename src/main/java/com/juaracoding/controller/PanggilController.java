@@ -1,18 +1,15 @@
 package com.juaracoding.controller;
 
-//import com.juaracoding.config.ContohConfig;
-import com.juaracoding.dto.LoginDTO;
+import com.juaracoding.dto.validasi.LoginDTO;
 import com.juaracoding.model.User;
-import org.springframework.beans.factory.annotation.Value;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
 public class PanggilController {
 
-//    private String strZ;
+    private String strZ;
 //    @GetMapping("/v1/contoh/1")
 //    public String dataContoh(){
 //
@@ -23,8 +20,6 @@ public class PanggilController {
 //    }
 //    @Value("${contoh.aja}")
 //    private String strContohAja;
-
-
 
     @PostMapping("/contoh")
     public String save(@RequestBody User user){
@@ -56,13 +51,13 @@ public class PanggilController {
 
     @PutMapping("/contoh/{id}/{page}/{nama}")
     public String update(
-                @PathVariable(value = "nama") String strNama,
-                @PathVariable(value = "id") Long id,
-                @PathVariable(value = "page") Integer page,
-                @RequestBody User user,
-                @RequestParam(value = "p1") String strP1,
-                @RequestParam(value = "p2") String strP2
-                         ){
+            @PathVariable(value = "nama") String strNama,
+            @PathVariable(value = "id") Long id,
+            @PathVariable(value = "page") Integer page,
+            @RequestBody User user,
+            @RequestParam(value = "p1") String strP1,
+            @RequestParam(value = "p2") String strP2
+    ){
         System.out.println(strNama);
         System.out.println(id);
         System.out.println(page);

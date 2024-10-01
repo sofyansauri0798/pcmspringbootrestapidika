@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
-
     /*
         DEFAULT URL Untuk mengakses SWAGGER http://localhost:8080/swagger-ui/index.html
      */
@@ -25,7 +24,7 @@ public class SwaggerConfig {
                 .info(new Info().title("Springboot+JPA+JWT+SQLServer")
                         .description("SPRINGBOOT REST API")
                         .version("1.0").contact(new Contact().name("Paul Christian").email( "paulchristian@gmail.com")
-                        .url("localhost:8080/api/v1"))
+                                .url("localhost:8080/api/v1"))
                         .license(new License().name("Springboot Open Source License")
                                 .url("https://spring.io/")));
     }
